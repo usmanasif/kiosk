@@ -5,5 +5,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :employees, only: [] do
+    collection do
+      get :dashboard
+    end
+  end
+
   root 'static_pages#splash'
 end

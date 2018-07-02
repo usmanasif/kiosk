@@ -1,0 +1,38 @@
+<div class='row'>
+  <div class='col-lg-6 col-centered text-center'>
+    <h3>Employee's Dashboard.</h3>
+    <h5>All Orders are mentioned below with details.</h5>
+  </div>
+</div>
+
+<% @orders.each do |order| %>
+  <div class='row'>
+    <div class='col-lg-6 col-centered text-center'>
+      <h3>Order: <%= order.id %></h3>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-lg-8 col-centered'>
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>No. of scoops</th>
+            <th>Toppings</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% order.order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.product_name %></td>
+              <td><%= order_item.count_of_scoops %></td>
+              <td><%= order_item.toppings.to_sentence %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
