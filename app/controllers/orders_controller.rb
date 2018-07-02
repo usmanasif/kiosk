@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to @order, notice: 'Order is submitted successfully'
     else
+      flash[:alert] = @order.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.fetch(:order).permit(order_items_attributes: [:product_name, :count_of_scoops, toppings: []])
+      params.fetch(:order).permit(order_items_attributes: [:_destroy, :product_name, :count_of_scoops, toppings: []])
     end
 
     def set_order
