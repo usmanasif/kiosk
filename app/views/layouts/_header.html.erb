@@ -14,7 +14,15 @@
       <ul class='nav navbar-nav navbar-right'>
         <li>
           <% unless static_pages_controller? %>
-            <%= link_to 'Dummy', '#' %>
+            <% if employees_controller? %>
+              <%= link_to new_order_path do %>
+                <i class='fa fa-pencil-square-o'></i> Place Order
+              <% end %>
+            <% else %>
+              <%= link_to dashboard_employees_path do %>
+                <i class='fa fa-calendar'></i> Employee's Dashboard
+              <% end %>
+            <% end %>
           <% end %>
         </li>
       </ul>

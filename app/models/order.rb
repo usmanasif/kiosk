@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  enum status: [ :not_confirmed, :confirmed ]
+  enum status: [ :not_confirmed, :confirmed, :completed ]
 
   has_many :order_items
 

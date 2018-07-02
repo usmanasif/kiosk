@@ -6,4 +6,8 @@ module ApplicationHelper
   def static_pages_controller?
     active_controller?('static_pages')
   end
+
+  def employees_controller?
+    active_controller?('employees')
+  end
 end
