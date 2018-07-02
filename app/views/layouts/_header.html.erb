@@ -1,0 +1,23 @@
+<nav class='navbar navbar-default'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#kiosk-navbar'>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+
+      <%= link_to 'Kiosk', root_path, class: 'navbar-brand' %>
+    </div>
+
+    <div class='collapse navbar-collapse' id='kiosk-navbar'>
+      <ul class='nav navbar-nav navbar-right'>
+        <li>
+          <% unless static_pages_controller? %>
+            <%= link_to 'Dummy', '#' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
