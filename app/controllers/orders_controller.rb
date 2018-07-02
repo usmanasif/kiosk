@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:show, :confirm_order]
+
   def show
   end
 
@@ -8,18 +10,26 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new(order_params)
+    @order = Order.new(order_params)
 
-    if order.save
-      flash[:notice] = 'Order is submitted successfully'
-      redirect_to order
+    if @order.save
+      redirect_to @order, notice: 'Order is submitted successfully'
     else
       render :new
     end
   end
 
+  def confirm_order
+    @order.confirmed!
+    redirect_to new_order_path, notice: 'Order is confirmed successfully'
+  end
+
   private
     def order_params
       params.fetch(:order).permit(order_items_attributes: [:product_name, :count_of_scoops, toppings: []])
+    end
+
+    def set_order
+      @order = Order.find(params[:id])
     end
 end

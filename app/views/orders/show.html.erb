@@ -1,0 +1,39 @@
+<div class='row'>
+  <div class='col-lg-6 col-centered text-center'>
+    <h3>Please, confirm your order.</h3>
+    <h5>Your order details are mentioned below.</h5>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-lg-8 col-centered'>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>No. of scoops</th>
+          <th>Toppings</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @order.order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.product_name %></td>
+            <td><%= order_item.count_of_scoops %></td>
+            <td><%= order_item.toppings.to_sentence %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-lg-6 col-centered text-center'>
+    <%= link_to 'Confirm Order', confirm_order_order_path(@order), method: :post, class: 'btn btn-lg btn-success' %>
+  </div>
+</div>
+
+
+
