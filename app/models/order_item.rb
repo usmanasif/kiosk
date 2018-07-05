@@ -23,6 +23,8 @@ class OrderItem < ApplicationRecord
     end
 
     def check_count_of_scoops
+      return if self.count_of_scoops.blank?
+
       if self.product_name == 'Cone' && self.count_of_scoops > 2
         errors.add(:scoops, "Cannot exceed from 2 for #{self.product_name}")
       elsif self.product_name == 'Bowl' && self.count_of_scoops > 3
