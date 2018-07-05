@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :employees, only: [] do
     collection do
       get :dashboard
-      get 'complete_order/:order_id', action: :complete_order, as: :complete_order
+      post 'complete_order/:order_id', action: :complete_order, as: :complete_order
     end
   end
 

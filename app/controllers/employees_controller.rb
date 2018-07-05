@@ -6,6 +6,6 @@ class EmployeesController < ApplicationController
   def complete_order
     @order = Order.find(params[:order_id])
     @order.completed!
-    redirect_back fallback_location: root_path, notice: 'Order is confirmed successfully'
+    redirect_back fallback_location: root_path, notice: 'Order is completed successfully'
   end
 end
