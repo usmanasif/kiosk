@@ -13,6 +13,7 @@
           <th>Category</th>
           <th>No. of scoops</th>
           <th>Toppings</th>
+          <th>Price</th>
         </tr>
       </thead>
 
@@ -22,6 +23,7 @@
             <td><%= order_item.product_name %></td>
             <td><%= order_item.count_of_scoops %></td>
             <td><%= order_item.toppings.to_sentence %></td>
+            <td><%= display_amount(order_item.amount) %></td>
           </tr>
         <% end %>
       </tbody>

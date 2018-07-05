@@ -5,4 +5,8 @@ class Order < ApplicationRecord
 
   validates :order_items, presence: true
   accepts_nested_attributes_for :order_items, allow_destroy: true
+
+  def amount
+    self.order_items.sum(&:amount)
+  end
 end

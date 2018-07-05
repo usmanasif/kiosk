@@ -9,6 +9,10 @@ class OrderItem < ApplicationRecord
   validate :check_count_of_scoops
   validate :count_of_toppings
 
+  def amount
+    (self.count_of_scoops * 1) + (self.toppings.length * 0.1)
+  end
+
   private
     def count_of_toppings
       if self.product_name == 'Cone' && self.toppings.length > 1
