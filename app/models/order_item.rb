@@ -1,16 +1,22 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
+  belongs_to :item
 
   PRODUCTS = ['Cone', 'Bowl'].freeze
   TOPPINGS = ['Almonds', 'Caramel', 'Chocolate Chips'].freeze
   SCOOPS = ['1', '2', '3'].freeze
+  TOPPING_PRICE = 0.10
 
   validates :product_name, :count_of_scoops, presence: true
   validate :check_count_of_scoops
   validate :count_of_toppings
 
   def amount
-    (self.count_of_scoops * 1) + (self.toppings.length * 0.1)
+    (self.count_of_scoops * self.item.amount) + (self.toppings.length * TOPPING_PRICE)
+  end
+
+  def product_name
+    self.item&.name
   end
 
   private

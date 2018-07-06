@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.fetch(:order).permit(order_items_attributes: [:_destroy, :product_name, :count_of_scoops, toppings: []])
+      params.fetch(:order).permit(order_items_attributes: [:_destroy, :item_id, :count_of_scoops, toppings: []])
     end
 
     def set_order

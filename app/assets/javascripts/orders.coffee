@@ -6,7 +6,7 @@ bind_scoops_on_product_select = ->
     checkboxes_list.prop('checked', false).prop('disabled', false)
     checkboxes_list.prop('disabled', false)
 
-    if @value == 'Cone'
+    if $('option:selected', this).html() == 'Cone'
       radio_button.prop('disabled', true)
     else
       radio_button.prop('disabled', false)

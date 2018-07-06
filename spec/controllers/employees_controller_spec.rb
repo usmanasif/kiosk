@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EmployeesController, type: :controller do
   let(:order) { FactoryBot.create(:order, :with_order_items) }
+  let(:item) { FactoryBot.create(:item, :cone) }
 
   describe 'Dashboard' do
     it '/employees/dashboard' do

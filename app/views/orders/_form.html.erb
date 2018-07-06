@@ -4,7 +4,7 @@
       <div class='form-group'>
         <div class='row'>
           <div class='col-lg-4 col-centered'>
-            <%= order_item.select :product_name, options_for_select(OrderItem::PRODUCTS), {}, { class: 'form-control product-select' } %>
+            <%= order_item.select :item_id, options_for_select(Item.pluck(:name, :id)), {}, { class: 'form-control product-select' } %>
           </div>
         </div>
       </div>

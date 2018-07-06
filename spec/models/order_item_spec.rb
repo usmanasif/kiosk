@@ -1,9 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Order, type: :model do
+RSpec.describe OrderItem, type: :model do
   let(:order) { FactoryBot.create(:order, :with_order_items) }
   let(:order_item_without_order) { FactoryBot.build(:order_item) }
   let(:order_item) { order.order_items.first }
+  let(:item) { FactoryBot.create(:item, :cone) }
+  let(:cone) { FactoryBot.create(:item, :cone) }
+  let(:bowl) { FactoryBot.create(:item, :bowl) }
+
+  before do
+    order_item.item = item
+  end
 
   describe 'Validates presence of Order' do
     it 'Without Order' do
@@ -16,15 +23,18 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe 'Validates presence of Product name' do
-    it 'Without Product Name' do
-      order_item.product_name = nil
-      expect(order_item).to_not be_valid
+  describe 'Validates presence of Item' do
+    context 'Without Item' do
+      before do
+        order_item.item = nil
+      end
+
+      it { expect(order_item).to_not be_valid }
     end
 
-    context 'With Product Name' do
+    context 'With Item' do
       it { expect(order_item).to be_valid }
-      it { expect(order_item).to validate_presence_of(:product_name) }
+      it { expect(order_item).to belong_to(:item) }
     end
   end
 
@@ -55,7 +65,7 @@ RSpec.describe Order, type: :model do
 
     context 'Bowl' do
       before do
-        order_item.product_name = 'Bowl'
+        order_item.item = bowl
       end
 
       it 'Invalid' do
@@ -85,7 +95,7 @@ RSpec.describe Order, type: :model do
 
     context 'Bowl' do
       before do
-        order_item.product_name = 'Bowl'
+        order_item.item = bowl
       end
 
       it 'Invalid' do
