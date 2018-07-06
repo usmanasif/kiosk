@@ -14,7 +14,7 @@ bind_scoops_on_product_select = ->
 bind_toppings = ->
   $('body').on 'change', '.topping-checkbox', ->
     parent_container = $(this).parents('.checkboxes-container')
-    product_value = $(this).parents('.order-item-fields').find('.product-select').val()
+    product_value = $(this).parents('.order-item-fields').find('.product-select option:selected').html()
 
     if product_value == 'Cone'
       if parent_container.find('.topping-checkbox:checked').length == 1
