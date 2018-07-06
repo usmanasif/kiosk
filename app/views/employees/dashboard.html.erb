@@ -9,7 +9,7 @@
   <% @orders.each do |order| %>
     <div class='row'>
       <div class='col-lg-6 col-centered text-center'>
-        <h3>Order: <%= '%04d' % order.id %></h3>
+        <h3>Order Number: <%= order.number %></h3>
 
         <%= link_to 'Complete Order', complete_order_employees_path(order), method: :post, class: 'btn btn-warning' %>
 

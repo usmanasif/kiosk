@@ -9,4 +9,8 @@ class Order < ApplicationRecord
   def amount
     self.order_items.sum(&:amount)
   end
+
+  def number
+    '%04d' % self.id
+  end
 end
